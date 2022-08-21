@@ -17,7 +17,6 @@ tags: [Design Pattern]
 RPG 게임을 개발하며, 전사, 마법사 이렇게 2가지 직업들을 구현해야하는 상황이다. 각각의 직업은 스킬도 모두 다를 것이다. 전사는 검을 휘두르고 걸어다니며 이동하고, 마법사는 파이어 볼을 발사하고 순간이동으로 이동한다. 현재까지의 상황을 코드로 작성해보자.
 
 ```java
-@import
  public abstract class Adventurer {
   private String job;
 
@@ -31,7 +30,6 @@ RPG 게임을 개발하며, 전사, 마법사 이렇게 2가지 직업들을 구
 {: file='Adventurer.class'}
 
 ```java
-@import
 public class Warrior extends Adventurer {
   public Warrior(String job) { super(job); }
   
@@ -42,7 +40,6 @@ public class Warrior extends Adventurer {
 {: file='Warrior.class'}
 
 ```java
-@import
 public class Magician extends Adventurer {
   public Magician(String job) { super(job); }
   
@@ -53,7 +50,6 @@ public class Magician extends Adventurer {
 {: file='magician.class'}
 
 ```java
-@import
 public class Main {
   public static void main(String[] args) {
     Adventurer warrior = new Warrior("전사");
@@ -84,7 +80,6 @@ public class Main {
 
 
 ```java
-@import
 public class Warrior extends Adventurer {
   public Warrior(String job) { super(job); }
   
@@ -95,7 +90,6 @@ public class Warrior extends Adventurer {
 {: file='Warrior.class'}
 
 ```java
-@import
 public class Magician extends Adventurer {
   public Magician(String job) { super(job); }
   
@@ -106,7 +100,6 @@ public class Magician extends Adventurer {
 {: file='magician.class'}
 
 ```java
-@import
 public class MagicWarrior extends Adventurer {
   public MagicWarrior(String job) { super(job); }
   
@@ -127,13 +120,11 @@ public class MagicWarrior extends Adventurer {
 위에서 전략패턴을 “각각의 알고리즘(전략)들을 공통의 인터페이스를 구현하는 클래스로 캡슐화하고, 동적으로 전략을 쉽게 바꿀 수 있도록 설계하는 패턴” 이라고 설명하였다. 이제 각 직업의 공격과 이동 방식(**전략**)을 공통의 인터페이스로 정의해보자.
 
 ```java
-@import
 public interface AttackStrategy { public void attack(); }
 ```
 {: file='AttackStrategy.class'}
 
 ```java
-@import
 public interface MovingStrategy { public void move(); }
 ```
 {: file='MovingStrategy.class'}
@@ -142,7 +133,6 @@ public interface MovingStrategy { public void move(); }
 이제 공격과 이동 스킬(전략)을 클래스로 구현한다.
 
 ```java
-@import
 public class SmashStrategy implements AttackStrategy {
   public void attack() { System.out.println("검 휘두르기."); }
 }
@@ -150,7 +140,6 @@ public class SmashStrategy implements AttackStrategy {
 {: file='SmashStrategy.class'}
 
 ```java
-@import
 public class FireBallStrategy implements AttackStrategy {
   public void attack() { System.out.println("파이어볼 발사하기."); }
 }
@@ -158,7 +147,6 @@ public class FireBallStrategy implements AttackStrategy {
 {: file='FireBallStrategy.class'}
 
 ```java
-@import
 public class WalkingStrategy implements MovingStrategy {
   public void move() { System.out.println("열심히 걷기."); }
 }
@@ -166,7 +154,6 @@ public class WalkingStrategy implements MovingStrategy {
 {: file='WalkingStrategy.class'}
 
 ```java
-@import
 public class TeleportStrategy implements AttackStrategy {
   public void attack() { System.out.println("텔레포트로 이동하기."); }
 }
@@ -177,7 +164,6 @@ public class TeleportStrategy implements AttackStrategy {
 각 직업의 공격과 이동 스킬(전략)은 인터페이스와 그 구현체로 분리했으니, 직업 클래스에서 공격과 이동 메소드는 제거한다.
 
 ```java
-@import
 public class Magician extends Adventurer {
   public Magician(String job) { super(job); }
 }
@@ -185,7 +171,6 @@ public class Magician extends Adventurer {
 {: file='Magician.class'}
 
 ```java
-@import
 public class Warrior extends Adventurer {
   public Magician(String job) { super(job); }
 }
@@ -193,7 +178,6 @@ public class Warrior extends Adventurer {
 {: file='Warrior.class'}
 
 ```java
-@import
 public class MagicWarrior extends Adventurer {
   public MagicWarrior(String job) { super(job); }
 }
@@ -204,7 +188,6 @@ public class MagicWarrior extends Adventurer {
 그리고 Adventurer 클래스는 다음과 같이 수정한다.
 
 ```java
-@import
 public abstract class Adventurer {
   private String job;
   private AttackStrategy attackStrategy;
@@ -225,7 +208,6 @@ public abstract class Adventurer {
 `setAttackStrategy`, `setMovingStrategy` 을 통해 공격과 이동 전략을 주입 받고 `AttackStrategy`, `MovingStrategy` 인터페이스에서 공격과 이동 전략을 가져올 수 있다.
 
 ```java
-@import
 public class Main {
   public static void main(String[] args) {
     Adventurer warrior = new Warrior("전사");

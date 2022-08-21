@@ -17,7 +17,6 @@ tags: [Design Pattern]
 버튼이 눌리면, 특정 기능을 실행하는 프로그램을 구현한다. 우선 버튼을 누를 때, 램프의 불이 켜지는 프로그램을 구현해보자.
 
 ```java
-@import
 public class Button {
   private Lamp lamp;
 
@@ -33,7 +32,6 @@ public class Button {
 {: file='Button.class'}
 
 ```java
-@import
 public class Lamp {
   public void turnOn() {
     System.out.println("Lamp Turn On");
@@ -44,7 +42,6 @@ public class Lamp {
 {: file='Lamp.class'}
 
 ```java
-@import
 public static void main(String[] args) {
   Lamp lamp = new Lamp();
   Button button = new Button(lamp);
@@ -64,7 +61,6 @@ Button 생성자를 이용해 Lamp 객체를 전달하고, Button의 pressed 메
 예를 들어 램프 대신 알람 기능을 실행하고 싶다면, Button 클래스를 수정해야 한다.
 
 ```java
-@import
 public class Alarm {
   public void start() {
     System.out.println("Alarm Start");
@@ -74,7 +70,6 @@ public class Alarm {
 {: file='Alarm.class'}
 
 ```java
-@import
 public class Button {
   private Alarm alarm;
 
@@ -90,7 +85,6 @@ public class Button {
 {: file='Button.class'}
 
 ```java
-@import
 public static void main(String[] args) {
   Alarm alarm = new Alarm();
   Button button = new Button(alarm);
@@ -106,7 +100,6 @@ public static void main(String[] args) {
 <br>
 
 ```java
-@import
 enum Mode { LAMP, ALARM }
 
 public class Button {
@@ -135,7 +128,6 @@ public class Button {
 {: file='Button.class'}
 
 ```java
-@import
 public static void main(String[] args) {
   Lamp theLamp = new Lamp();
   Alarm alarm = new Alarm();
@@ -159,12 +151,11 @@ public static void main(String[] args) {
 Button 클래스를 수정하지 않고 사용하기 위해, pressed 메서드에서 기능을 직접 구현하는 대신, 버튼을 눌렀을 때, 실행되는 기능들을 캡슐화하여 외부에서 제공받도록 설계한다.
 아래는 커맨트 패턴을 적용한 클래스 다이어그램이다.
 
-<img src="/command-uml.png" alt="The flower">
+<img src="/command-uml.png" alt="Command Patter UML">
 
 이제 Button 클래스는 특정 기능을 실행할 때, Lamp나 Alarm의 메서드들을 직접 호출하지 않고, 정의된 Command 인터페이스를 통해 excute로 메서드를 호출한다. 그리고 Command 인터페이스를 상속받은 클래스들은 각각의 기능을 excute 메서드를 통해 기능을 구현한다.
 
 ```java
-@import
 public interface Command {
   public abstract void execute();
 }
@@ -176,7 +167,6 @@ public interface Command {
 <br>
 
 ```java
-@import
 public class Button {
   private Command theCommand;
 
@@ -200,7 +190,6 @@ pressed 메서드를 호출하면, 주어진 Command의 excute 메서드를 호�
 <br>
 
 ```java
-@import
 public class LampOnCommand implements Command {
   private Lamp lamp;
 
@@ -216,7 +205,6 @@ public class LampOnCommand implements Command {
 {: file='LampOnCommand.class'}
 
 ```java
-@import
 public class AlarmStartCommand implements Command {
   private Alarm alarm;
 
@@ -236,7 +224,6 @@ public class AlarmStartCommand implements Command {
 <br>
 
 ```java
-@import
 public static void main(String[] args) {
     Lamp theLamp = new Lamp();
     Command lampOnCommand = new LampOnCommand(theLamp);
