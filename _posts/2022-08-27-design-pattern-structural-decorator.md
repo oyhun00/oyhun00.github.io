@@ -13,8 +13,14 @@ tags: [Design Pattern]
 객체에 추가적인 기능을 서브 클래스를 생성하는 방식보다 훨씬 유연하게 동적으로 객체를 결합하며 추가할 수 있는 패턴이다.
 
 ## 🚘 도로를 표시하는 네비게이션 SW 만들기
+네비게이션의 기능은 다음과 같이 2가지의 기능이 있다.
 
-UML
+- 도로를 간단한 선으로 표시
+- 도로의 차선을 표시
+
+<img src="/decorator-before-1-uml.png" alt="UML">
+
+기본적으로 이 네비게이션은 도로를 간단한 선으로 표시하고, 차선은 사용자가 선택하여 기능을 보여줄 수 있다. 기본적으로 보여주는 도로와 추가로 차선을 표시하여 제공하고 싶다면 RoadDisplay 클래스와 이를 상속받는 RoadDisplayWithLane 클래스를 설계해야 할 것이다.
 
 ```java
 public class RoadDisplay {
@@ -46,6 +52,7 @@ public static void main(String[] args) {
   roadWithLaneDisplay.draw();
 }
 ```
+`RoadDisplay` 클래스는 기본 도로 표시 기능만 제공하도록 하고, `RoadDisplay` 클래스를 상속받는 `RoadWithLaneDisplay` 클래스는 기본 도로 표시 기능에 추가적으로 차선 표시 기능을 더하기 위해 `draw` 메소드를 오버라이드하여 구현한다.
 
 ```console
 Default Road Display
@@ -53,18 +60,17 @@ Default Road Display
         Lane Display
 ```
 
-기본적으로 이 네비게이션은 도로를 간단한 선으로 표시하고, 차선은 사용자가 선택하여 기능을 보여줄 수 있다. 기본적으로 보여주는 도로와 추가로 차선을 표시하여 제공하고 싶다면 RoadDisplay 클래스와 이를 상속받는 RoadDisplayWithLane 클래스를 설계해야 할 것이다.
-
 ## 💣 문제점
 
 만약 도로의 차선 표시 기능 뿐만 아니라, 교통량과 교차로를 표시하는 기능을 제공하고, 이 기능을 동시에 보여주는 즉, 조합하기 위해선 다음과 같이 수많은 하위 클래스를 설계하고 추가적인 메소드들을 작성해야 할 것이다.
 
-(UML)
+<img src="/decorator-before-2-uml.png" alt="UML">
 
 ```java
 public class RoadWithLaneDisplay extends RoadDisplay() { ... }
 public class RoadWithTrafficDisplay extends RoadDisplay() { ... }
 public class RoadWithTrafficAndLaneDisplay extends RoadDisplay() { ... }
+...
 ```
 
 ## 💡 해결법
@@ -73,7 +79,7 @@ public class RoadWithTrafficAndLaneDisplay extends RoadDisplay() { ... }
 
 (UML)
 
-각 부가적인 기능(Decorator) 클래스에서는 기본 기능인 RoadDisplay 클래스가 draw 메소드를 호출하도록 하고, 데코레이터들이 가지고 있는 기능은 직접 제공하도록 한다.
+각 부가적인 기능(Decorator) 클래스에서는 기본 기능인 `RoadDisplay` 클래스가 `draw` 메소드를 호출하도록 하고, 데코레이터들이 가지고 있는 기능은 직접 제공하도록 한다.
 
 ```java
 public abstract class Display {
@@ -82,6 +88,8 @@ public abstract class Display {
 ```
 
 기능을 표시하는 `Display` 추상 클래스를 작성하여 `draw` 메소드를 서브 클래스에서 작성하도록 한다.
+
+<br>
 
 ```java
 public class RoadDisplay extends Display {
@@ -92,6 +100,8 @@ public class RoadDisplay extends Display {
 ```
 
 기본 기능인 도로 표시 기능을 구현한다. `draw` 메소드는 `Display` 추상 클래스에서 상속 받아 기능을 구현한다.
+
+<br>
 
 ```java
 public abstract class DisplayDecorator extends Display {
@@ -107,7 +117,9 @@ public abstract class DisplayDecorator extends Display {
 }
 ```
 
-마찬가지로 Decorator 역시 `Display` 추상 클래스를 상속받는다. (내용 보충)
+Decorator의 공통 기능을 제공하는 `DisplayDecorator` 클래스를 작성한다. 
+
+<br>
 
 ```java
 public class LaneDecorator extends DisplayDecorator {
@@ -145,20 +157,26 @@ public class CameraDecorator extends DisplayDecorator { ... }
 
 `LaneDecorator`, `TrafficDecorator`, `CameraDecorator` 클래스는 실제로 기본 기능에 추가적으로 장식해줄 Decorator 이므로, `DisplayDecorator` 추상 클래스를 상속 받도록 한다. `DisplayDecorator` 에서 상속받은 `draw()` 메소드를 오버라이드하여, 각 부가 기능(Decorator)이 수행해야 할 기능만 추가로 작성한다.
 
+<br>
+
 ```java
-public static void main(String[] args) {
-  Display roadDisplay = new RoadDisplay();
-  roadDisplay.draw();
+public class Main{
+  public static void main(String[] args) {
+    Display roadDisplay = new RoadDisplay();
+    roadDisplay.draw();
 
-  Display roadWithLaneDisplay = new LaneDecorator(new RoadDisplay());
-  roadWithLaneDisplay.draw();
+    Display roadWithLaneDisplay = new LaneDecorator(new RoadDisplay());
+    roadWithLaneDisplay.draw();
 
-  Display roadWithTrafficDisplay = new TrafficDecorator(new RoadDisplay());
-  roadWithTrafficDisplay.draw();
+    Display roadWithTrafficDisplay = new TrafficDecorator(new RoadDisplay());
+    roadWithTrafficDisplay.draw();
 
-  Display roadWithLaneAndTrafficDisplay = new RoadDisplay();
-  roadWithLaneAndTrafficDisplay = new TrafficDecorator(roadWithLaneAndTrafficDisplay);
-  roadWithLaneAndTrafficDisplay = new LaneDecorator(roadWithLaneAndTrafficDisplay);
-  roadWithLaneAndTrafficDisplay.draw();
+    Display roadWithLaneAndTrafficDisplay = new RoadDisplay();
+    roadWithLaneAndTrafficDisplay = new TrafficDecorator(roadWithLaneAndTrafficDisplay);
+    roadWithLaneAndTrafficDisplay = new LaneDecorator(roadWithLaneAndTrafficDisplay);
+    roadWithLaneAndTrafficDisplay.draw();
+  }
 }
 ```
+
+각 인스턴스 객체는 모두 `Display` 클래스를 통해 생성되고 있다. `Main` 클래스는 동일한 `Display` 클래스를 통해 일관성 있는 방식으로 기능을 제공할 수 있다. 이렇게 데코레이터 패턴을 통해 기능이 추가 될 때마다, 수많은 하위 클래스를 생성하지 않고도, 각 데코레이터 별로 조합하여 설계할 수 있게 되었다.
