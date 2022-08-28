@@ -18,7 +18,7 @@ tags: [Design Pattern]
 public void orderPizza(String type) {
   Pizza pizza;
 
-	if (type.equals("Cheeze")) {
+  if (type.equals("Cheeze")) {
     pizza = new CheesePizza();
   } else if (type.equals("Veggie")) {
     pizza = new VeggiePizza();
@@ -36,7 +36,7 @@ public void orderPizza(String type) {
 public void orderPizza(String type) {
   Pizza pizza;
 
-	if (type.equals("Cheeze")) {
+  if (type.equals("Cheeze")) {
     pizza = new CheesePizza();
   } /* else if (type.equals("Veggie")) {
     pizza = new VeggiePizza();
@@ -77,7 +77,7 @@ else if (type.equels("Pepperoni")) {
 ```java
 public class SimplePizzaFactory {
   public Pizza createPizza(String type) {
-	  Pizza pizza = null;
+    Pizza pizza = null;
 
     if (type.equals("Cheeze")) {
       pizza = new CheesePizza();
