@@ -40,7 +40,8 @@ public void orderPizza(String type) {
     pizza = new CheesePizza();
   } /* else if (type.equals("Veggie")) {
     pizza = new VeggiePizza();
-  }*/ else if (type.equels("Pepperoni")) {
+  }*/
+  else if (type.equels("Pepperoni")) {
     pizza = new PepperoniPizza();
 	} else if (type.equels("Chicken")) {
     pizza = new ChickenPizza();
@@ -63,7 +64,8 @@ if (type.equals("Cheeze")) {
   pizza = new CheesePizza();
 } /* else if (type.equals("Veggie")) {
   pizza = new VeggiePizza();
-} */ else if (type.equels("Pepperoni")) {
+} */
+else if (type.equels("Pepperoni")) {
   pizza = new PepperoniPizza();
 } else if (type.equels("Chicken")) {
   pizza = new ChickenPizza();
@@ -80,10 +82,10 @@ public class SimplePizzaFactory {
     if (type.equals("Cheeze")) {
       pizza = new CheesePizza();
     } else if (type.equels("Pepperoni")) {
-		  pizza = new PepperoniPizza();
-		} else if (type.equels("Chicken")) {
-		  pizza = new ChickenPizza();
-		}
+      pizza = new PepperoniPizza();
+    } else if (type.equels("Chicken")) {
+      pizza = new ChickenPizza();
+    }
 
     return pizza;
   }
