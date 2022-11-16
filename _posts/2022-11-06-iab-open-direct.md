@@ -49,7 +49,7 @@ _출처: IAB Open Direct Document_
 
 # 📋 Object
 
-### Account
+## Account
 
 Account는 구매자(수요자) - 광고주 관계를 정의한다. 구매자는 **일반적으로 광고주를 대신하여 주문하는 대행사**다.
 
@@ -65,7 +65,7 @@ Account는 구매자(수요자) - 광고주 관계를 정의한다. 구매자는
 | name* | - 계정의 이름 | string(255) |
 | ext | - Optional vendor-specific extensions. | ext object |
 
-### AdUnit
+## AdUnit
 
 각 광고 단위에는 하나의 AdCOM 광고 사양이 포함됨
 
@@ -75,7 +75,7 @@ Account는 구매자(수요자) - 광고주 관계를 정의한다. 구매자는
 | name | - Ad Unit의 고유한 이름 | string(255) |
 | spec* | - The technical specifications of this Ad Unit | AdCOM Placement object |
 
-### Address
+## Address
 
 주소 객체는 Organization에 대한 값을 제공하는데 사용
 
@@ -88,7 +88,7 @@ Account는 구매자(수요자) - 광고주 관계를 정의한다. 구매자는
 | postalcode | - 주소의 우편번호 혹은 ZIP Code | string(15) |
 | state | - organization의 행정 주소 | string(36) |
 
-### Assignment
+## Assignment
 
 Assingment는 광고 소재(Creative)를 캠페인(Order)의 광고 항목(Line)과 연관시킨다. 광고 소재(Creative)는 하나 이상의 광고 항목(Line)에 할당될 수 있고, 광고 항목(Line)은 하나 이상의 광고 소재(Creative)에 할당될 수 있다.
 
@@ -101,7 +101,7 @@ Assingment는 광고 소재(Creative)를 캠페인(Order)의 광고 항목(Line)
 | weight | - 동일한 광고 항목에 할당되어 있는 여러개의 광고 소재에서 해당 광고 소재 표시량의 가중치를 결정 <br> - 가중치를 지정하지 않으면 일정한 가중치 제공 <br> - 가중치가 하나라도 적용되어 있다면, 동일한 광고 항목에 속한 모든 Assignment는 가중치를 지정해야함 <br> - 모든 Assignment의 가중치 합이 최대 100이 되지 않으면 균등 순환이 적용됨 <br> - ex: 동일한 날짜의 광고 항목에 할당된 광고 소재 A의 가중치가 25, B의 가중치가 75라면 B는 A보다 3배 더 자주 표시된다. | integer (1-100) |
 | ext | Optional vendor-specific extensions. | ext object |
 
-### ChangeRequest
+## ChangeRequest
 
 캠페인(Order)이 진행되고 있는 동안 변경이 필요할 때, ChangeRequest를 통해 변경을 요청하고 승인을 기다리는 동안 캠페인(Order)를 수정할 수 있다.
 
@@ -117,7 +117,7 @@ Assingment는 광고 소재(Creative)를 캠페인(Order)의 광고 항목(Line)
 | webhook | - 판매자(공급자)가 변경을 승인, 거부, 수정할 때 호출되는 URI <br> - URI는 변경 요청 ID가 포함된 PUT과 함께 호출 | string(36) |
 | ext | Optional vendor-specific extensions. | ext object |
 
-### Creative
+## Creative
 
 광고 소재(Creative)는 캠페인(Order)의 광고 항목(Line)에 표시할 광고에 대한 정보를 제공한다. Assignment 리소스를 통해 캠페인(Order)의 광고 항목(Line) 리소스가 광고 소재(Creative)에 할당된다
 
@@ -129,7 +129,7 @@ Assingment는 광고 소재(Creative)를 캠페인(Order)의 광고 항목(Line)
 | creativeapprovals | - 각 판매자(공급자)에 대한 승인 상태를 나타내는 항목 | Key/Value array |
 | ext | Optional vendor-specific extensions. | ext object |
 
-### Line
+## Line
 
 광고 항목(Line)은 캠페인(Order)에 포함되며, 제품의 상태, 시작 혹은 종료 날짜, 캠페인(Order) 항목에 대한 세부 정보를 제공한다. 
 
@@ -160,41 +160,41 @@ Assingment는 광고 소재(Creative)를 캠페인(Order)의 광고 항목(Line)
 | pmp |  |  |
 | ext | Optional vendor-specific extensions. | ext object |
 
-### Message
+## Message
 
-### Order
+## Order
 
-### Organization
+## Organization
 
-### Placement
+## Placement
 
-### Product
+## Product
 
-### Stats
+## Stats
 
 # 🔃 Workflow
 
-### 대행사(구매자) 등록
+## 대행사(구매자) 등록
 
 대행사(구매자)는 퍼블리셔가 직접 등록한다. 해당 프로세스는 판매자(공급자)가 정의하며 판매자에 따라 다르다. 대행사에 조직이 추가되면 대행사에서 광고 고객을 위한 조직을 만들 수 있다. 조직에 존재하는 사용자들은 각자의 고유한 자격 증명을 가지고 있어야 한다.
 
-### 광고주(Organization) 조직 등록
+## 광고주(Organization) 조직 등록
 
 광고주는 퍼블리셔에게 직접 가입하거나, 대행사가 광고주를 대리할 수 있다. 광고주는 하나 이상의 조직을 만들 수 있다. 특정 조직을 만들면 해당 조직에 브랜드, 혹은 자회사에 대한 account를 만들 수 있다. 이러한 조직의 구성도는 광고주의 판단으로 자율적으로 구성할 수 있다. 그리고 각 조직의 사용자들은 고유한 자격 증명을 가지고 있어야 한다.
 
-### OAuth 2.0 Access Token
+## OAuth 2.0 Access Token
 
 공급자는 OAuth 2.0을 통해 사용자를 인증해야 한다. 모든 API 호출에서 헤더에 OAuth Access Token이 필요하다.
 
 인증 서비스에서 Access Token과 Refresh Token 및 만료 시간을 반환한다. Refresh Token을 이용하여 Access Token을 받으면 된다.
 
-### 계정 등록
+## 계정 등록
 
 광고주의 재량에 따라 조직을 구성하고 각 조직에 해당하는 account를 만들 수 있다 했다. 광고주를 대행하는 대행사는 광고주의 accept가 있어야 한다. 이러한 광고주의 account를 관리할 수 있는 권한을 대행사에게 부여하는 과정은 퍼블리셔가 직접 정의한다.
 
 account는 캠페인(Order) 혹은 광고 소재(Creative)와의 관계가 포함된다.
 
-### 인벤토리와 Availability, 가격 가져오기
+## 인벤토리와 Availability, 가격 가져오기
 
 The following provides several options for getting product inventory details. Typically, you’d use the first two options to present a product catalog and the last option to add and book a line.
 
@@ -202,23 +202,23 @@ The following provides several options for getting product inventory details. Ty
 
 Providers should not use the avails search method (option 3) to determine estimated avails.
 
-### 캠페인(Order) 생성
+## 캠페인(Order) 생성
 
 캠페인(Order)는 광고 항목(Line)의 상위 컨테이너이다. 캠페인(Order)에 광고 항목(Line)을 추가하려면 `POST` `/accounts/{id}/orders` 로 API Call을 보낸다.
 
-### 캠페인(Order)에 광고 항목(Line) 추가
+## 캠페인(Order)에 광고 항목(Line) 추가
 
 광고 항목(Line)은 예약할 광고 제품, 수량, 타겟팅 정보와 광고 항목이 실행되는 기간을 지정한다. 캠페인에 광고 항목을 추가하려면 `POST` `/accounts/{id}/orders/{id}/lines` 로 요청을 보낸다.
 
 광고 항목의 상태는 초안 상태에서만 업데이트할 수 있다.
 
-### 광고 소재(Creative) 업로드 및 Assignment(할당)
+## 광고 소재(Creative) 업로드 및 Assignment(할당)
 
 광고 소재를 업로드 한다. `POST` `/accounts/{id}/creatives` 요청을 보내면 된다.
 
 대부분의 광고 소재는 광고 항목에 할당되기 전에 승인을 거쳐야 할당이 가능하다. 이 광고 소재의 상태를 확인하고 광고 항목에 할당한다. 광고 항목을 예약하기 전에 할당된 광고 소재가 있어야 한다. 이 광고 소재는 광고주가 실행하려는 실제 광고 소재이거나, 대체되는 광고 소재일 수 도 있다.
 
-### 광고 항목 예약 및 취소
+## 광고 항목 예약 및 취소
 
 광고 항목을 예약 또는 취소하려면 각각 다음 URI에 PATCH 또는 PUT 요청을 보낸다.
 
@@ -230,11 +230,11 @@ Providers should not use the avails search method (option 3) to determine estima
 
 # 🗞️ 다이어그램
 
-### 퍼블리셔 Workflow Diagram
+## 퍼블리셔 Workflow Diagram
 <img src="/opendirect1.png" alt="IAB Open Direct" style="width: 450px;">
 _출처: IAB Open Direct Document_
 
-### 구매 대행사 및 광고주 Workflow Diagram
+## 구매 대행사 및 광고주 Workflow Diagram
 <img src="/opendirect2.png" alt="IAB Open Direct" style="width: 450px;">
 _출처: IAB Open Direct Document_
 
