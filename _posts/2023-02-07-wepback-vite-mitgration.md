@@ -107,7 +107,7 @@ export default ({ mode }) => {
 
 기본적인 Vite 설정 완료 후, 실행 했더니 다음과 같이 에러가 나타났다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2dfff102-18bb-496c-ab40-6864165349ab/Untitled.png)
+<img src="/webpack-vite-1.png" alt="webpack-vite-1.png">
 
 이는 Vite의 모듈 번들러인 Rollup의 파일 탐색 방식 때문인데, rollup 설정의 `build.rollupOptions.external` 이 외부 파일보다 `/` 을 먼저 찾기 때문에 발생한 오류였다.
 
@@ -129,7 +129,7 @@ export default ({ mode }) => {
 
 ## 🔹 Internal server error: Failed to resolve import "…" from "src/index.tsx". Does the file exist?
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/68233871-a56c-4fe9-8c45-b7da913c7df4/Untitled.png)
+<img src="/webpack-vite-2.png" alt="webpack-vite-2.png">
 
 서버가 정상적으로 실행되는 듯 했으나 이번에도 경로를 찾지 못해 파일을 불러오지 못하는 에러가 발생했다. 프로젝트 내부에서 모든 파일 코드를 수정하기엔 큰 리소스 소모가 필요해보였다. 이는 vite-tsconfig-paths 플러그인을 설치하여 해결하였다. 해당 플러그인은 TypeScript의 경로 매핑을 그대로 사용할 수 있게끔 도와주는 플러그인이다.
 
@@ -155,6 +155,10 @@ export default defineConfig({
 ## 🔹 Require is not defined
 
 Vite는 기본적으로 ES Module 방식을 사용하기 때문에, require 문(CJS)을 사용하면 `require is not defined` 에러를 출력한다.
+
+<img src="/webpack-vite-3.png" alt="webpack-vite-2.png">
+
+<img src="/webpack-vite-4.png" alt="webpack-vite-4.png">
 
 이는 vite 프로젝트에서 require를 사용할 수 있게끔 도와주는 플러그인을 설치하여 해결하였다. [링크](https://www.npmjs.com/package/vite-plugin-require)
 
@@ -189,9 +193,11 @@ export default defineConfig({
 ## 🔹 Hot Module Reload
 
 - Webpack
+<br>
   <img src="/HMR-Webpack.gif" alt="HMR-Webpack">
 
 - Vite
+<br>
   <img src="/HMR-Vite.gif" alt="HMR-Vite">
 
 ## 🔹 Build Time
