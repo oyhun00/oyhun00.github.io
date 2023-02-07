@@ -1,5 +1,5 @@
 ---
-title: 옵저버 패턴을 리엑트에서 사용해보기
+title: 옵저버 패턴을 리액트에서 사용해보기
 author: yong
 date: 2022-08-29 11:58:00 +0800
 categories: [Design Pattern, React]
