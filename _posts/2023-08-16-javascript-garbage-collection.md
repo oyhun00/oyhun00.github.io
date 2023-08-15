@@ -1,7 +1,7 @@
 ---
 title: JavaScript Memory
 author: yong
-date: 2023-08-16 11:58:00 +0800
+date: 2023-08-15 11:58:00 +0800
 categories: [JavaScript, Core]
 tags: [JavaScript]
 ---
