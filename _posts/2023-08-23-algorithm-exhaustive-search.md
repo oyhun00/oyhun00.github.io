@@ -1,7 +1,7 @@
 ---
 title: 완전 탐색
 author: yong
-date: 2025-07-29 11:33:00 +0800
+date: 2023-08-23 11:33:00 +0800
 categories: [algorithm]
 tags: [algorithm]
 ---
